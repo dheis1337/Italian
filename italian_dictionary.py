@@ -6,6 +6,11 @@ import re
 f = open('C:/MyStuff/DataScience/Projects/Italian/cmogcbdsdk-1488719198-ea5a65.txt')
 lines = f.readlines()
 
+# laptop file location
+f = open('/home/david/MyStuff/DataScience/Italian/cmogcbdsdk-1488719198-ea5a65.txt')
+lines = f.readlines()
+
+
 # remove \n and \t characters
 lines = [line.rstrip('\n') for line in lines]
 lines = [line.replace('\t', ' ') for line in lines]
@@ -21,8 +26,13 @@ lines = [[word.replace('Ã\xa0', 'à') for word in line] for line in lines]
 lines = [[word.replace('Ã', 'è') for word in line] for line in lines]
 
 
-# Read in Anki words
+# Read in Anki words (Desktop)
 anki = pd.read_csv('C:/MyStuff/DataScience/Projects/Italian/italianexport.csv')
+
+# Read in Anki words (Laptop)
+anki = pd.read_csv('/home/david/MyStuff/DataScience/Italian/italianexport.csv')
+
+
 
 # make the first column (words) a list
 word_list = list(anki.iloc[:, 0])
@@ -57,14 +67,18 @@ adjectives = [ele for ele in def_list if 'adj' in ele]
 
 adj_index = [ele.index('adj') for ele in adjectives]
 
+
 val_list = []
 key_list = []
 for i in range(len(adj_index)):
     if adj_index[i] == 2:
-        val_list.append([ele[0] for ele in adjectives])
-        key_list.append([ele[1] for ele in adjectives])
-    
-    
+        val_list.append(adjectives[i][0])
+        key_list.append(adjectives[i][1])
+    else:
+        
+
+adjectives.index('solo')
+
 
 
 # find all elements with 'noun' in them
